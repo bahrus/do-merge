@@ -1,0 +1,20 @@
+{
+  "name": "do-merge",
+  "version": "0.0.0",
+  "description": "Merge local values into the host custom element or a remote peer element",
+  "homepage": "https://github.com/bahrus/do-merge#readme",
+  "bugs": {
+    "url": "https://github.com/bahrus/do-merge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/do-merge.git"
+  },
+  "license": "MIT",
+  "author": "Bruce B. Anderson <anderson.bruce.b@gmail.com>",
+  "type": "module",
+  "main": "do-merge.js",
+  "scripts": {
+    "test": "playwright test"
+  }
+}
