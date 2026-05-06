@@ -47,6 +47,22 @@ customElements.define('mood-stone', MoodStone);
 
 This applies [assignFrom from the assign-gingerly package](https://github.com/bahrus/assign-gingerly#resolving-and-assigning-with-assignfrom).  The "from" is the button element.  
 
+## Relationship to do-invoke, do-inc, do-toggle
+
+do-merge covers most of the same ground as [do-invoke](https://github.com/bahrus/do-invoke), [do-inc](https://github.com/bahrus/do-inc), and [do-toggle](https://github.com/bahrus/do-toggle). The key differences:
+
+- **do-invoke**, **do-inc**, and **do-toggle** use a string DSL (no JSON required) and include inferencing logic — they can figure out the event type, target property, etc. from context, so you can often be less explicit. The intent is arguably more obvious at a glance for their specific use cases.
+- **do-merge** uses JSON syntax and the full power of [assign-gingerly](https://github.com/bahrus/assign-gingerly) operators (`=!` for toggle, `+=` for increment, method calls via `?.classList?.add`, etc.). It's more general-purpose — a single enhancement that can handle toggling, incrementing, method invocation, and arbitrary property assignment in one attribute.
+
+Choose do-merge when you need to combine multiple operations or want the full expressiveness of assign-gingerly. Choose the specialized enhancements when brevity and self-documenting intent matter more.
+
+### Editing JSON in HTML
+
+Two options for a better authoring experience:
+
+1. **json-in-html** — A VS Code / Kiro extension that adds syntax highlighting for JSON embedded in HTML attributes. Available in both the VS Code and Kiro marketplaces.
+2. **Build-time authoring** — Write your merge instructions in a `*.mjs` file that serializes to JSON, then inject the result into your HTML at build time. This gives you full editor support (comments, trailing commas, template literals) while producing valid JSON for the browser.
+
 ## Example 1b - Specifying the event
 
 ```html
