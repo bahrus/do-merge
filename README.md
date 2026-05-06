@@ -113,6 +113,27 @@ This applies [assignFrom from the assign-gingerly package](https://github.com/ba
 
 The second group will be done on click by default.
 
+## Example 1e - Specifying the target element to merge into
+
+```html
+<mood-stone itemscope id=moodStone>
+    <div>
+        Is Happy: <span id=happy></span>
+        Age: <span id=age></span>
+    </div>
+
+</mood-stone>
+...
+<button 🔀='{
+    "assign": {
+        "?.isHappy =!": ".",
+        "?.age +=": 10
+    ",
+    "targetElementId": "moodStone"
+}'>Merge</button>
+```
+
+
 ## Translating README Examples to Demos
 
 Each README example maps to a demo file in `demo/`. The translation pattern:
@@ -132,6 +153,7 @@ Each README example maps to a demo file in `demo/`. The translation pattern:
 | Example 1b | `demo/Example1b.html` | Adds `"on": "mouseover"` to specify event |
 | Example 1c | `demo/Example1c.html` | Uses canonical `do-merge` attribute instead of 🔀 |
 | Example 1d | `demo/Example1d.html` | Array of merge configs with different events and `options.withMethods` |
+| Example 1e | `demo/Example1e.html` | Uses `targetElementId` to merge into a remote element by ID |
 
 ### Notes on MoodStone setup
 

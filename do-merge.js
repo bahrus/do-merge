@@ -51,14 +51,15 @@ class DoMerge {
         const {mergeParamSets, enhancedElement} = self;
         const paramSets = Array.isArray(mergeParamSets) ? mergeParamSets : [mergeParamSets];
         const {assignFrom} = await import('assign-gingerly/assignFrom.js');
+        const {upSearch} = await import('inferencer/upSearch.js');
 
         for(const paramSet of paramSets){
-            const {assign, on, options} = paramSet;
+            const {assign, on, options, targetElementId} = paramSet;
             const eventType = on || 'click';
-            enhancedElement.addEventListener(eventType, () => {
-                const host = enhancedElement.closest('[itemscope]');
-                if(host === null) return;
-                assignFrom(host, assign, {from: enhancedElement, ...options});
+            enhancedElement.addEventListener(eventType, async () => {
+                const target = /** @type {any} */ (await upSearch(enhancedElement, targetElementId));
+                if(target === null) return;
+                assignFrom(target, assign, {from: enhancedElement, ...options});
             });
         }
 
