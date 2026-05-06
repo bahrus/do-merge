@@ -1,0 +1,28 @@
+{
+    "enhConfig": {
+        "enhKey": "🔀",
+        "spawn": "do-merge/do-merge.js",
+        "withAttrs": {
+            "base": "🔀",
+            "_base": {
+                "mapsTo": "mergeParamSets",
+                "instanceOf": "Object"
+            }
+        }
+    },
+    "customData": {
+        "weakRef": {
+            "properties": [
+                "enhancedElement"
+            ]
+        },
+        "actions": {
+            "hydrate": {
+                "ifAllOf": [
+                    "mergeParamSets",
+                    "enhancedElement"
+                ]
+            }
+        }
+    }
+}
