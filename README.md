@@ -15,7 +15,7 @@ class MoodStone extends HTMLElement{
         this.#isHappy = nv;
         this.querySelector('#happy').textContent = nv ? '😊' : '😢'
     }
-    #age = 0;
+    #age;
     get age(){
         return this.#age;
     }
@@ -26,6 +26,7 @@ class MoodStone extends HTMLElement{
     }
     connectedCallback(){
         this.isHappy = true;
+        this.age = 0;
     }
 }
 customElements.define('mood-stone', MoodStone);
@@ -171,9 +172,6 @@ Each README example maps to a demo file in `demo/`. The translation pattern:
 | Example 1d | `demo/Example1d.html` | Array of merge configs with different events and `options.withMethods` |
 | Example 1e | `demo/Example1e.html` | Uses `targetElementId` to merge into a remote element by ID |
 
-### Notes on MoodStone setup
-
-The README omits `this.age = 0` in `connectedCallback` but the demos include it to ensure the age display initializes properly. The `#age` field also omits the `= 0` initializer in the demo to match the pattern of `#isHappy` (both start as `undefined` until `connectedCallback` runs).
 
 ### Running demos
 

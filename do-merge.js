@@ -4,6 +4,7 @@
 /** @import {ElementEnhancementGateway, SpawnContext} from './types/assign-gingerly/types' */;
 /** @import {EMC} from './types/mount-observer/types' */;
 /** @import {RAConfig} from './types/roundabout/types' */;
+/** @import {Infer} from './types/inferencer/types' */
 
 /**
  * @implements {Actions}
@@ -55,7 +56,8 @@ class DoMerge {
 
         for(const paramSet of paramSets){
             const {assign, on, options, targetElementId} = paramSet;
-            const eventType = on || 'click';
+            let eventType = on;
+            if(!eventType) eventType = (await infer(enhancedElement)).eventType;
             enhancedElement.addEventListener(eventType, async () => {
                 const target = /** @type {any} */ (await upSearch(enhancedElement, targetElementId));
                 if(target === null) return;
@@ -66,5 +68,11 @@ class DoMerge {
         return /** @type {import('./types/do-merge/types').PAP} */ ({resolved: true});
     }
 }
+
+/**
+ * 
+ * @param {Element & ElementEnhancementGateway} from 
+ */
+async function infer(from){return /** @type {Infer} */ (/** @type {any} */ (from.enh.get((await import('inferencer/inferencer.js')).registryItem)));}
 
 export {DoMerge};
