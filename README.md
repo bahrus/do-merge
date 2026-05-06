@@ -38,7 +38,7 @@ customElements.define('mood-stone', MoodStone);
     </div>
     <button 🔀='{
         "assign": {
-            "?.isHappy !=": ".",
+            "?.isHappy =!": ".",
             "?.age +=": 10
         "
     }'>Merge</button>
@@ -57,7 +57,7 @@ This applies [assignFrom from the assign-gingerly package](https://github.com/ba
     </div>
     <button 🔀='{
         "assign": {
-            "?.isHappy !=": ".",
+            "?.isHappy =!": ".",
             "?.age +=": 10
         },
         "on": "mouseover"
@@ -75,7 +75,7 @@ This applies [assignFrom from the assign-gingerly package](https://github.com/ba
     </div>
     <button do-merge='{
         "assign": {
-            "?.isHappy !=": ".",
+            "?.isHappy =!": ".",
             "?.age +=": 10
         },
         "on": "mouseover"
@@ -94,7 +94,7 @@ This applies [assignFrom from the assign-gingerly package](https://github.com/ba
     <button do-merge='[
         {
             "assign": {
-                "?.isHappy !=": ".",
+                "?.isHappy =!": ".",
                 "?.age +=": 10,
                 "?.classList?.add": "my-class"
             },
@@ -112,6 +112,38 @@ This applies [assignFrom from the assign-gingerly package](https://github.com/ba
 ```
 
 The second group will be done on click by default.
+
+## Translating README Examples to Demos
+
+Each README example maps to a demo file in `demo/`. The translation pattern:
+
+1. **Wrap in full HTML document** with `<!DOCTYPE html>`, `<head>`, `<body>`
+2. **Include the import map** via `<!-- #include virtual="/imports.html" -->`
+3. **Register the enhancement** with a `<be-hive>` block containing `<script type=emc src="do-merge/🔀.json">` (or `emc.json` for the canonical name)
+4. **Import be-hive** with `<script type=module>import 'be-hive/be-hive.js';</script>`
+5. **Include the MoodStone custom element definition** (since the examples depend on it)
+6. **Copy the example markup** into `<body>`
+
+### Demo file mapping
+
+| README Example | Demo File | Key Difference from 1a |
+|---|---|---|
+| Example 1a | `demo/Example1a.html` | Base case — emoji attribute, click event (default) |
+| Example 1b | `demo/Example1b.html` | Adds `"on": "mouseover"` to specify event |
+| Example 1c | `demo/Example1c.html` | Uses canonical `do-merge` attribute instead of 🔀 |
+| Example 1d | `demo/Example1d.html` | Array of merge configs with different events and `options.withMethods` |
+
+### Notes on MoodStone setup
+
+The README omits `this.age = 0` in `connectedCallback` but the demos include it to ensure the age display initializes properly. The `#age` field also omits the `= 0` initializer in the demo to match the pattern of `#isHappy` (both start as `undefined` until `connectedCallback` runs).
+
+### Running demos
+
+```bash
+npm run serve
+```
+
+Then navigate to `http://localhost:8000/demo/Example1a.html` (the spa-ssi server handles the `#include virtual` directive for the import map).
 
 
 
