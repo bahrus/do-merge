@@ -22,14 +22,14 @@
     "update": "ncu -u && npm install"
   },
   "dependencies": {
-    "assign-gingerly": "0.0.51",
-    "be-hive": "0.1.13",
-    "inferencer": "0.0.2",
-    "mount-observer": "0.1.37",
-    "roundabout-lib": "0.0.20"
+    "assign-gingerly": "0.0.97",
+    "be-hive": "0.1.18",
+    "inferencer": "0.0.14",
+    "mount-observer": "0.1.53",
+    "roundabout-lib": "0.0.38"
   },
   "devDependencies": {
-    "spa-ssi": "0.0.27",
-    "@playwright/test": "1.60.0"
+    "spa-ssi": "0.0.28",
+    "@playwright/test": "1.63.0"
   }
 }
